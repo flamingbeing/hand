@@ -9,10 +9,10 @@
 //                                             root add a few extra folders)
 //      or { moved: { '/old/': 'https://example.org/new/' } }  (apps now on another site: each path forwards there)
 export const SITES = {
-  'example.example.com': { root: 'example/' },
+  'hand.anawj.com': { prefixes: { '/cmcj/': 'cmcj/', '/babies/': 'hand-babies/', '/handlog/': 'hand-log/' } },
 };
 
-// Folders every host serves as they are (shared files, no data), e.g. ['/shared/']
+// Folders every host serves as they are (shared files, no data). None: the design kit loads from design.anawj.com/v1/.
 export const SHARED = [];
 
 const LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/;

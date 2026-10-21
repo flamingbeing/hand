@@ -1,9 +1,7 @@
-# <repo name>
+# hand
 
 Instructions for every AI assistant working here (Claude Code reads this through `CLAUDE.md`).
-Replace the placeholders in angle brackets, then delete this line.
-
-<One or two lines: what this repo is and who uses it.>
+The hand-surgery teaching apps, served at hand.anawj.com: the hand assessment page (`hand-babies/`, at `/babies/`), the hand log (`hand-log/`, at `/handlog/`) and the CMC joint page (`cmcj/`, at `/cmcj/`). Static pages for clinicians; no sign-in, no database.
 
 ## Public here, private elsewhere
 
@@ -13,7 +11,12 @@ repo; never copy anything from there into this repo, a PR or an issue (neutral p
 
 ## Rules that bite
 
-- <Rule the next session must not get wrong.>
+- One Worker (`worker/`) serves hand.anawj.com; `worker/routes.js` `SITES` maps each path to a folder, and the folder
+  names stay as they are because each `sw.js` VERSION must start with its folder name.
+- The NUHS design kit is not in this repo: pages load it from `https://design.anawj.com/v1/` (also listed in each
+  `sw.js` SHELL). A kit change that breaks pages goes out as `/v2/`; pages move to it one at a time.
+- No hand bump of `sw.js` VERSION: the deploy build runs `node tools/stamp-versions.mjs`.
+- The page editor (`/edit/`) and the old `anawj.com/hand-*` addresses belong to the owner-tools and landing repos.
 
 ## Checks before merging
 
