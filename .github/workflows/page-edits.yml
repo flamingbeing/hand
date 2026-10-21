@@ -1,7 +1,7 @@
 # Instant page edits: when a "Page edits:" issue is opened by the owner, or the owner adds the label "go" to someone
 # else's, Claude drafts one PR for it straight away (with a PR) straight away.
 # The owner's comments on a PR it drafted (branch page-edits/…), or any comment of his on a PR that starts with
-# "@claude", make it revise that PR. It never merges. How it applies edits: NOTES.md, "Page edits". Ask Claude and the page editor (owner-tools repo) open these
+# "@claude", make it revise that PR. It never merges. How it applies edits: NOTES.md, "Page edits". Ask Claude (owner-tools repo) opens these
 # issues here for pages of this repo.
 #
 # Needs the repository secret CLAUDE_CODE_OAUTH_TOKEN (the owner makes it on his own computer with `claude setup-token`,

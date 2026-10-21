@@ -8,7 +8,6 @@
 
 ## Next (in order)
 1. After the cut-over: remove the hand host from anawj-site's routes (done in the same repo-split step).
-2. Owner-tools step: bring back the page-editor test and the "Suggest an edit" link.
 
 ## Recently done
 - Apps copied, design kit linked from design.anawj.com/v1/, Worker routes and tests, checks workflow.

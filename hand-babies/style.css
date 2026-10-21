@@ -90,7 +90,6 @@ table.t tr:last-child td { border-bottom: 0; }
 /* footer: note, edit link, then the two small muted lines (app version, get the latest version) */
 footer { padding: 8px 0 16px; }
 footer > .a-footnote:first-child { margin: 18px 16px 12px; }
-footer .edit-link .a-row { color: var(--a-tint); }
 footer > p#appver, footer > p:last-child { margin: 0 16px; color: var(--a-ink-2); font-size: var(--a-text-xs); line-height: 1.4; }
 footer > p#appver { margin-top: 18px; }
 footer .linkbtn {

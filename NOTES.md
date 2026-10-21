@@ -11,11 +11,11 @@ Lasting rules, owner preferences and lessons (never task chatter), and how to te
   tests load it from the live address.
 
 ## Testing
-- `node tools/check.mjs`, then the two e2e files (README). The editor test of the babies page moved to owner-tools.
+- `node tools/check.mjs`, then the two e2e files (README).
 
 ## Page edits
 
-Ask Claude and the page editor (owner-tools repo) open `Page edits:` issues here for pages of this repo (`hand-babies/`,
+Ask Claude (owner-tools repo) opens `Page edits:` issues here for pages of this repo (`hand-babies/`,
 `hand-log/`, `cmcj/`). `.github/workflows/page-edits.yml` drafts one PR per issue when the owner opened it or added the
 label `go` (needs the repository secret `CLAUDE_CODE_OAUTH_TOKEN` and "Allow GitHub Actions to create and approve pull
 requests" ticked; until then it does nothing). It never merges.

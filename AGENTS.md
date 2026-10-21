@@ -16,7 +16,7 @@ repo; never copy anything from there into this repo, a PR or an issue (neutral p
 - The NUHS design kit is not in this repo: pages load it from `https://design.anawj.com/v1/` (also listed in each
   `sw.js` SHELL). A kit change that breaks pages goes out as `/v2/`; pages move to it one at a time.
 - No hand bump of `sw.js` VERSION: the deploy build runs `node tools/stamp-versions.mjs`.
-- The page editor (`/edit/`) and the old `anawj.com/hand-*` addresses belong to the owner-tools and landing repos.
+- The old `anawj.com/hand-*` addresses belong to the landing repo; Ask Claude (page edits) to owner-tools.
 
 ## Checks before merging
 
