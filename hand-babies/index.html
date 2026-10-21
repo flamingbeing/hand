@@ -6,8 +6,8 @@
 <meta name="robots" content="noindex, nofollow">
 <script>
 // The page now lives at hand.anawj.com/babies/. The same folder is still served at anawj.com/hand-babies/, so send
-// visitors on from there (path, query and # kept). Only when it is the top page: the page editor on anawj.com still
-// opens the old copy in a frame to edit its text. A no-op on hand.anawj.com, previews and localhost (no loop).
+// visitors on from there (path, query and # kept). Only when it is the top page.
+// A no-op on hand.anawj.com, previews and localhost (no loop).
 if (top === self && /^(www\.)?anawj\.com$/.test(location.hostname))
   location.replace('https://hand.anawj.com/babies/' + location.pathname.replace(/^\/hand-babies\/?/, '') + location.search + location.hash);
 </script>
@@ -343,7 +343,6 @@ if (top === self && /^(www\.)?anawj\.com$/.test(location.hostname))
 </section>
 
 <footer>
-  <ul class="a-list edit-link"><li><a class="a-row" href="https://anawj.com/edit/?page=%2Fhand-babies%2F"><span class="a-row-text">Spotted something wrong? Suggest an edit</span><span class="a-chev" aria-hidden="true"></span></a></li></ul>
   <p id="appver" hidden></p>
   <p><button type="button" id="getlatest" class="linkbtn">Not updating? Get the latest version</button> <span id="getlatest-msg" role="status"></span></p>
 </footer>

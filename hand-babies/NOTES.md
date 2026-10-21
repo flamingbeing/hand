@@ -16,10 +16,8 @@ Lasting decisions for `hand-babies/`. Status and next steps: `STATUS.md`.
   folder stays `hand-babies/`; the Worker maps the address (`worker/routes.js`). Never use absolute `/hand-babies/…`,
   `/design/…` or `/edit/…` paths in the page: the subdomain serves only this folder (`/design/` and `/edit/` are 404s there).
 - The old `anawj.com/hand-babies/` is the same folder on GitHub Pages: a script at the top of `index.html` sends a
-  top-level visit to the new address (path, query, `#` kept). It skips frames, so the page editor (`/edit/`, on
-  anawj.com until SUBDOMAINS.md step 5) can still open the old copy to edit its text. The old `/hand/` redirect folder
+  top-level visit to the new address (path, query, `#` kept). The old `/hand/` redirect folder
   is gone (nobody used it).
-- The "Suggest an edit" link and `edit.html` go to `https://anawj.com/edit/?page=%2Fhand-babies%2F` (editor on anawj.com).
 
 ## Updates (offline worker)
 
@@ -64,8 +62,7 @@ under `xvfb-run` with `LIBGL_ALWAYS_SOFTWARE=1` to see the 3D figures. Where Web
   figure keys (a later one silently wins). Render frames at several camera turns before merging.
 - No Z-Anatomy / MakeHuman models (owner: too much effort); the hand stays primitives.
 
-## Edits sent from the page editor
+## Page edits
 
-The page editor is now site-wide: `/edit/` (`edit/NOTES.md`, which also says how to apply `Page edits:` issues). The
-page's "Suggest an edit" link and the old `edit.html` open it on `/hand-babies/`. Figures are paused inside it
-(`handFigs.pauseAll`) and take comments only; figure text is drawn in `app.js`, so regenerate `gifs/` after changing it.
+The page editor and its "Suggest an edit" link were dropped (21 Oct 2026, repo split); the owner sends changes with Ask
+Claude (repo NOTES.md, "Page edits"). Figure text is drawn in `app.js`, so regenerate `gifs/` after changing it.

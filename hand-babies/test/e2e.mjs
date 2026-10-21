@@ -13,7 +13,7 @@ const SHOTS = process.env.SHOTS;
 const b = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH, args: ['--no-sandbox'] } : {});
 const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
 // The real addresses are served from this checkout: anawj.com (GitHub Pages) as the whole repo, hand.anawj.com as the
-// Worker maps it (/babies/ -> hand-babies/; the design kit loads from design.anawj.com/v1/), so the move and the page editor can be
+// Worker maps it (/babies/ -> hand-babies/; the design kit loads from design.anawj.com/v1/), so the move can be
 // tested offline.
 const root = new URL('../../', import.meta.url).pathname;
 const MIME = { html: 'text/html', js: 'text/javascript', css: 'text/css', gif: 'image/gif', svg: 'image/svg+xml', json: 'application/json' };
@@ -116,7 +116,6 @@ try {
   assert.deepEqual(mvErrors.filter(e => !/WebGL|GL Driver/.test(e)), [], 'errors on hand.anawj.com/babies/');
   await mv.goto('https://anawj.com/hand-babies/gifs/fpl.gif'); // a file is not a page: no redirect script, still served
   await mv.close();
-  // The page editor (/edit/) is part of the owner-tools repo; its test of this page lives there (repo split, S5).
 
   if (SHOTS) {
     await page.goto(BASE);

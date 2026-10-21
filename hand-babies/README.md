@@ -12,7 +12,6 @@ photos, to the standard of care. Lives at `hand.anawj.com/babies/` (folder `hand
   (`vendor/three.module.min.js`, MIT); they plug into the same player (Play/Pause, still frame, drag to turn).
 - `gifs/`: GIF copy of each animation for sharing in chats. Made by `node hand-babies/tools/make-gifs.mjs` (server on 8080,
   needs ffmpeg); rerun after changing a figure. `style.css`: layout. `sw.js`: offline cache (its `VERSION` is stamped at deploy, no hand bump).
-- `edit.html`: page editor for suggesting changes (sends a GitHub issue); see NOTES.md "Edits sent from the page editor".
 - Decisions and content rules: `NOTES.md`. Status: `STATUS.md`.
 
 Test (phone size, axe accessibility, every figure drew and animates, pause, reduced motion, GIFs exist, in-page links

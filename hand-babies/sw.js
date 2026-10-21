@@ -4,7 +4,7 @@
 
 const VERSION = 'hand-babies-v10';
 const NET_WAIT = 3000; // ms before falling back to the cached copy
-const SHELL = ['./', 'index.html', 'style.css', 'https://design.anawj.com/v1/tokens.css', 'https://design.anawj.com/v1/app.css', 'https://design.anawj.com/v1/app.js', 'app.js', 'hand3d.js', 'vendor/three.module.min.js', 'edit.html'];
+const SHELL = ['./', 'index.html', 'style.css', 'https://design.anawj.com/v1/tokens.css', 'https://design.anawj.com/v1/app.css', 'https://design.anawj.com/v1/app.js', 'app.js', 'hand3d.js', 'vendor/three.module.min.js'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => Promise.all(
@@ -30,7 +30,6 @@ self.addEventListener('fetch', e => {
   e.respondWith((async () => {
     const cache = await caches.open(VERSION);
     // navigations: the page, cached under by the folder (see prewarm/sw.js for why not 'index.html')
-    // (only the page itself: edit.html is a separate page and must not get the shell)
     const shell = req.mode === 'navigate' && /\/(index\.html)?$/.test(url.pathname);
     const key = shell ? './' : req;
     const cached = () => cache.match(key, { ignoreSearch: req.mode === 'navigate' });

@@ -265,13 +265,11 @@ function tick() {
     raf = requestAnimationFrame(frame);
   });
 }
-// add: hand3d.js registers its figures; renderAt: tools/make-gifs.mjs draws one frame; pauseAll: edit.html stops the
-// figures so they can be selected
+// add: hand3d.js registers its figures; renderAt: tools/make-gifs.mjs draws one frame
 window.handFigs = {
   FIGS,
   add(name, f) { document.querySelectorAll(`[data-fig="${name}"]`).forEach(el => { if (!el.querySelector('.fig-art')) setup(el, f); }); },
   renderAt(name, s) { const st = figs.find(x => x.el.dataset.fig === name); if (st) { if (st.playing) setPlaying(st, false); st.view.draw(s); return st.f.dur; } },
-  pauseAll: () => figs.forEach(st => { if (st.playing) setPlaying(st, false); }),
 };
 
 // opening a scenario from a link (#pic-cut etc.) opens it
