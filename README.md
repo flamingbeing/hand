@@ -1,18 +1,15 @@
-# public-template
+# hand
 
-Template for public repositories. Click "Use this template" to start a new repo with these already set up:
+Hand-surgery teaching apps for clinicians, served at hand.anawj.com by one Cloudflare Worker.
 
-- `.claude/settings.json`: allow rules (git, PR tools, tests) so cloud sessions rarely prompt, and deny-reads for
-  `__/` and `vendor/` to save tokens. It is only read when a session has exactly one repo attached.
-- `AGENTS.md` / `CLAUDE.md`: shared AI instructions skeleton (fill the placeholders).
-- `.claude/skills/quick-save`: cheap end-of-session save.
-- `STATUS.md`, `NOTES.md`: state files the skill updates.
-- `tools/`: `check.mjs` (repo checks + Worker tests; run before merging), `stamp-versions.mjs` (service-worker
-  VERSION per deploy), `proofread.mjs` (page and doc mistakes; `--live` checks the real addresses), `shots.mjs`
-  (phone screenshots by hand).
-- A Cloudflare Worker that serves the apps: `worker/sites.js`, `worker/routes.js` (which folder each address
-  serves), its tests in `worker/test/`, and `wrangler.jsonc` with preview links and workers.dev off.
-- `example/`: a tiny app with a service worker; replace it and update `SITES` in `worker/routes.js`.
+| Address | Folder | What |
+|---|---|---|
+| hand.anawj.com/babies/ | `hand-babies/` | Hand assessment page (3D figures, scenarios) |
+| hand.anawj.com/handlog/ | `hand-log/` | Hand log (entries saved on the device) |
+| hand.anawj.com/cmcj/ | `cmcj/` | CMC joint page |
 
-After creating a repo, in Settings → General → Pull Requests tick "Automatically delete head branches" (settings are
-not copied by templates).
+Checks: `node tools/check.mjs` (repo checks and Worker tests). Browser tests: `node hand-log/test/e2e.mjs` and
+`node hand-babies/test/e2e.mjs` (the second needs `python3 -m http.server 8080` running). Local Worker check:
+`npx wrangler@4 dev --local`, then `curl localhost:8787/babies/`.
+
+Moved here from the anawj-site repo on 21 Oct 2026 (files only, no history; the old repo keeps it).
