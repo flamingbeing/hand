@@ -4,7 +4,7 @@
 
 const VERSION = 'hand-babies-v10';
 const NET_WAIT = 3000; // ms before falling back to the cached copy
-const SHELL = ['./', 'index.html', 'style.css', 'https://design.anawj.com/v1/tokens.css', 'https://design.anawj.com/v1/app.css', 'https://design.anawj.com/v1/app.js', 'app.js', 'hand3d.js', 'vendor/three.module.min.js'];
+const SHELL = ['./', 'index.html', 'style.css', 'https://design.anawj.com/v1/tokens.css', 'https://design.anawj.com/v1/app.css', 'https://design.anawj.com/v1/app.js', 'app.js', 'hand3d.js', 'vendor/three.module.min.js', 'manifest.webmanifest', 'icons/icon.svg', 'icons/favicon-32.png', 'icons/apple-touch-icon.png', 'icons/icon-192.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => Promise.all(
