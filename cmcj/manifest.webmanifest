@@ -1,0 +1,31 @@
+{
+  "name": "Thumb CMC Trainer",
+  "short_name": "Thumb CMC",
+  "description": "Interactive 3D trainer for the thumb CMC joint: anatomy, osteoarthritis staging and simulated arthroscopy.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f2ef",
+  "theme_color": "#f3f2ef",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

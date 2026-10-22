@@ -4,7 +4,7 @@
 
 const VERSION = 'hand-log-v1';
 const NET_WAIT = 3000; // ms before falling back to the cached copy
-const SHELL = ['./', 'index.html', 'style.css', 'https://design.anawj.com/v1/tokens.css', 'https://design.anawj.com/v1/app.css', 'https://design.anawj.com/v1/app.js', 'js/app.js', 'js/forms.js'];
+const SHELL = ['./', 'index.html', 'style.css', 'https://design.anawj.com/v1/tokens.css', 'https://design.anawj.com/v1/app.css', 'https://design.anawj.com/v1/app.js', 'js/app.js', 'js/forms.js', 'manifest.webmanifest', 'icons/icon.svg', 'icons/favicon-32.png', 'icons/apple-touch-icon.png', 'icons/icon-192.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => Promise.all(
