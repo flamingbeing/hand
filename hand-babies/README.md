@@ -4,7 +4,7 @@ One-page crash course for MOs in their first week of hand surgery: how to examin
 photos, to the standard of care. Lives at `hand.anawj.com/babies/` (folder `hand-babies/`; `anawj.com/hand-babies/` redirects). No data, no sign-in; works offline once opened.
 
 - `index.html`: all the text (rules, by clinical picture, sensation/2PD, tendons, infection/Kanavel, photos,
-  referral template, words, quiz). Edit content here.
+  documenting and handing over with one example message). Edit content here.
 - `app.js`: draws the figures (inline SVG, stylised LEFT hand palm side, thumb on the left = radial) as looping
   animations (each a function of time; the last frame is the complete diagram), copy button, top-bar highlight,
   offline worker.
