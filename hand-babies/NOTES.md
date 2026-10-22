@@ -15,7 +15,7 @@ Lasting decisions for `hand-babies/`. Status and next steps: `STATUS.md`.
 - Lives at `hand.anawj.com/babies/` (moved from `anawj.com/hand-babies/`, 13 Oct 2026, SUBDOMAINS.md step 2). The repo
   folder stays `hand-babies/`; the Worker maps the address (`worker/routes.js`). Never use absolute `/hand-babies/…`,
   `/design/…` or `/edit/…` paths in the page: the subdomain serves only this folder (`/design/` and `/edit/` are 404s there).
-- The old `anawj.com/hand-babies/` is the same folder on GitHub Pages: a script at the top of `index.html` sends a
+- The old `anawj.com/hand-babies/` is now a redirect stub in the landing repo (`anawj-site`) that sends a
   top-level visit to the new address (path, query, `#` kept). The old `/hand/` redirect folder
   is gone (nobody used it).
 
@@ -43,7 +43,7 @@ itself (`skipWaiting` in install); never go back to waiting for a tap (on a phon
   about the long axis = EPL retropulsion). One WebGL renderer draws each figure, then 2D labels go on top. Users can
   drag sideways to turn. GIFs hold the camera still (`HAND_GIF`) to stay small; regenerate after any change.
 - Tone: instructive and kind, never scolding ("so a normal result there doesn't tell you…", not "is wrong").
-- Clinical content is a teaching aid, not a protocol; the footer says so.
+- Clinical content is a teaching aid, not a protocol (the footer carries only the version and refresh controls).
 
 ## Browsers
 
