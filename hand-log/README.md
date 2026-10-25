@@ -18,7 +18,7 @@ With the server above running, from the repo root:
 
 ```
 node hand-log/test/e2e.mjs            # SHOTS=<dir> also saves phone screenshots
-node tools/check.mjs
+node .devkit/tools/check.mjs
 ```
 
 The browser test adds a DOPS and a Mini-CEX at 390 px, reloads, exports CSV, deletes an entry, and runs axe on the

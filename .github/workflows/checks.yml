@@ -1,4 +1,4 @@
-# Repo checks (tools/check.mjs: service-worker rules, wrangler settings, Worker tests) on every PR and push to main.
+# Repo checks (.devkit/tools/check.mjs: service-worker rules, wrangler settings, Worker tests) on every PR and push to main.
 name: checks
 on:
   pull_request:
@@ -10,4 +10,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: flamingbeing/app-devkit/setup-node@v1
-      - run: node tools/check.mjs
+      - uses: flamingbeing/app-devkit/setup-tools@v1.6.0
+      - run: node .devkit/tools/check.mjs
