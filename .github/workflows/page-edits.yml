@@ -32,7 +32,7 @@ jobs:
       github.event.issue.state == 'open' &&
       ((github.event.action == 'opened' && github.event.issue.user.login == 'flamingbeing') ||
        (github.event.action == 'labeled' && github.event.label.name == 'go' && github.event.sender.login == 'flamingbeing'))
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     # one batch at a time, so two never edit the same page at once
     concurrency:
@@ -99,7 +99,7 @@ jobs:
       github.event.issue.pull_request &&
       github.event.issue.state == 'open' &&
       github.event.comment.user.login == 'flamingbeing'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     # one revision of a PR at a time (each comment waits for the one before)
     concurrency:
