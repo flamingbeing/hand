@@ -52,6 +52,8 @@ jobs:
         if: steps.token.outputs.ok == 'true'
         with:
           fetch-depth: 0
+      - uses: flamingbeing/app-devkit/setup-tools@v1.6.0
+        if: steps.token.outputs.ok == 'true'
       - uses: anthropics/claude-code-action@v1
         if: steps.token.outputs.ok == 'true'
         env:
@@ -61,7 +63,7 @@ jobs:
           github_token: ${{ github.token }}
           claude_args: >-
             --max-turns 60
-            --allowedTools "Read,Edit,Write,Glob,Grep,Bash(git:*),Bash(gh issue view:*),Bash(gh issue comment:*),Bash(gh pr create:*),Bash(gh pr list:*),Bash(node tools/check.mjs),Bash(node tools/proofread.mjs*),Bash(node */test/*.mjs)"
+            --allowedTools "Read,Edit,Write,Glob,Grep,Bash(git:*),Bash(gh issue view:*),Bash(gh issue comment:*),Bash(gh pr create:*),Bash(gh pr list:*),Bash(node .devkit/tools/check.mjs),Bash(node .devkit/tools/proofread.mjs*),Bash(node */test/*.mjs)"
           prompt: |
             You are drafting one PR for the "Page edits:" issue #${{ github.event.issue.number }} in ${{ github.repository }}.
             Read AGENTS.md and NOTES.md ("Page edits") first and follow them exactly.
@@ -78,7 +80,7 @@ jobs:
             1. `gh issue view ${{ github.event.issue.number }}` to read it. If `gh pr list --search "#${{ github.event.issue.number }} in:body"`
                already shows a PR for it, stop.
             2. Create the branch `page-edits/issue-${{ github.event.issue.number }}` from main, make the changes, run
-               `node tools/check.mjs` and the test of each app you touched (AGENTS.md lists them), and commit.
+               `node .devkit/tools/check.mjs` and the test of each app you touched (AGENTS.md lists them), and commit.
             3. Push and open ONE pull request (never a draft, never merged by you) titled "Page edits: <pages> (#${{ github.event.issue.number }})",
                whose body says "For #${{ github.event.issue.number }}", lists each change (page, before, after) and has a
                "Needs the owner's decision" section when anything was left out. "Wants options" comments: make 2–3 clearly
@@ -124,6 +126,8 @@ jobs:
         with:
           ref: ${{ steps.pr.outputs.ref }}
           fetch-depth: 0
+      - uses: flamingbeing/app-devkit/setup-tools@v1.6.0
+        if: steps.pr.outputs.go == 'true'
       - uses: anthropics/claude-code-action@v1
         if: steps.pr.outputs.go == 'true'
         env:
@@ -133,7 +137,7 @@ jobs:
           github_token: ${{ github.token }}
           claude_args: >-
             --max-turns 60
-            --allowedTools "Read,Edit,Write,Glob,Grep,Bash(git:*),Bash(gh pr view:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh issue view:*),Bash(node tools/check.mjs),Bash(node tools/proofread.mjs*),Bash(node */test/*.mjs)"
+            --allowedTools "Read,Edit,Write,Glob,Grep,Bash(git:*),Bash(gh pr view:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh issue view:*),Bash(node .devkit/tools/check.mjs),Bash(node .devkit/tools/proofread.mjs*),Bash(node */test/*.mjs)"
           prompt: |
             The owner commented on PR #${{ github.event.issue.number }} in ${{ github.repository }} (branch
             `${{ steps.pr.outputs.ref }}`, checked out). Revise the PR to do what the comment asks.
@@ -147,7 +151,7 @@ jobs:
             it, and never merge. Clinical content (doses, techniques, cut-offs, safety advice): don't change it, ask in a
             PR comment instead. If it asks for something else entirely, only reply asking the owner to confirm.
 
-            Make the changes on this branch, run `node tools/check.mjs` and the tests AGENTS.md lists for what you
+            Make the changes on this branch, run `node .devkit/tools/check.mjs` and the tests AGENTS.md lists for what you
             touched, commit and push to `${{ steps.pr.outputs.ref }}`. Then reply on the PR in a few lines: what changed,
             what you left and why, and that this repo has no preview links.
       - name: Say so on the PR if revising failed

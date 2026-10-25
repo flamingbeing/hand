@@ -8,7 +8,7 @@ Hand-surgery teaching apps for clinicians, served at hand.anawj.com by one Cloud
 | hand.anawj.com/handlog/ | `hand-log/` | Hand log (entries saved on the device) |
 | hand.anawj.com/cmcj/ | `cmcj/` | CMC joint page |
 
-Checks: `node tools/check.mjs` (repo checks and Worker tests). Browser tests: `node hand-log/test/e2e.mjs` and
+Checks: `node .devkit/tools/check.mjs` (repo checks and Worker tests). Browser tests: `node hand-log/test/e2e.mjs` and
 `node hand-babies/test/e2e.mjs` (the second needs `python3 -m http.server 8080` running). Local Worker check:
 `npx wrangler@4 dev --local`, then `curl localhost:8787/babies/`.
 

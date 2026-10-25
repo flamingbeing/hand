@@ -11,7 +11,7 @@ Lasting rules, owner preferences and lessons (never task chatter), and how to te
   tests load it from the live address.
 
 ## Testing
-- `node tools/check.mjs`, then the two e2e files (README).
+- `node .devkit/tools/check.mjs`, then the two e2e files (README).
 
 ## Page edits
 
