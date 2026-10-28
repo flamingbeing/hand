@@ -4,7 +4,15 @@
 
 const VERSION = 'hand-babies-v10';
 const NET_WAIT = 3000; // ms before falling back to the cached copy
-const SHELL = ['./', 'index.html', 'style.css', 'https://design.anawj.com/v1/tokens.css', 'https://design.anawj.com/v1/app.css', 'https://design.anawj.com/v1/app.js', 'app.js', 'hand3d.js', 'vendor/three.module.min.js', 'manifest.webmanifest', 'icons/icon.svg', 'icons/favicon-32.png', 'icons/apple-touch-icon.png', 'icons/icon-192.png'];
+// The app kit (app-ui), one exact version (kit.js, index.html): the theme sheets and theme/index.js with every module it
+// imports. Exact-version files never change, so they are served from this cache first, online or not.
+const KIT = 'https://core.anawj.com/ui/1.0.0-rc.24/';
+const KIT_SHELL = ['theme/early.js', 'theme/theme.css', 'theme/index.js', 'theme/choice.js',
+  'theme/colour.js', 'theme/grid.js', 'theme/guard.js', 'theme/looks.js', 'theme/motion.js', 'theme/palette-css.js',
+  'theme/presets.js', 'theme/schema.js', 'theme/switch.js', 'theme/looks/a.js', 'theme/looks/b.js', 'theme/looks/c.js',
+  'theme/looks/d.js', 'theme/looks/e.js'].map(f => KIT + f);
+const PINNED = /^https:\/\/core\.anawj\.com\/ui\/\d+\.\d+\.\d+(-rc\.\d+)?\//;
+const SHELL = ['./', 'index.html', 'style.css', 'https://design.anawj.com/v1/tokens.css', 'https://design.anawj.com/v1/app.css', 'https://design.anawj.com/v1/app.js', 'app.js', 'hand3d.js', 'vendor/three.module.min.js', 'kit.js', 'manifest.webmanifest', 'icons/icon.svg', 'icons/favicon-32.png', 'icons/apple-touch-icon.png', 'icons/icon-192.png', ...KIT_SHELL];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => Promise.all(
@@ -26,6 +34,13 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
+  if (PINNED.test(req.url)) {
+    e.respondWith(caches.open(VERSION).then(async cache => await cache.match(req) || fetch(req).then(res => {
+      if (res.ok) cache.put(req, res.clone());
+      return res;
+    })));
+    return;
+  }
   if (url.origin !== self.location.origin) return;
   e.respondWith((async () => {
     const cache = await caches.open(VERSION);

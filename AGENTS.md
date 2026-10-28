@@ -15,6 +15,8 @@ repo; never copy anything from there into this repo, a PR or an issue (neutral p
   names stay as they are because each `sw.js` VERSION must start with its folder name.
 - The NUHS design kit is not in this repo: pages load it from `https://design.anawj.com/v1/` (also listed in each
   `sw.js` SHELL). A kit change that breaks pages goes out as `/v2/`; pages move to it one at a time.
+- The app kit theme (look, light/dark, accent) loads from `https://core.anawj.com/ui/1.0.0-rc.24/`; the version is
+  pinned in each folder's `kit.js`, `index.html` and `sw.js` (`KIT_SHELL`), so change all three together.
 - No hand bump of `sw.js` VERSION: the deploy build runs `node tools/stamp-versions.mjs`.
 - The old `anawj.com/hand-*` addresses belong to the landing repo; Ask Claude (page edits) to owner-tools.
 

@@ -10,8 +10,8 @@
 if (top === self && /^(www\.)?anawj\.com$/.test(location.hostname)) location.replace('https://hand.anawj.com/cmcj/' + location.pathname.replace(/^\/cmcj\/?/, '') + location.search + location.hash);
 </script>
 <title>Thumb CMC Trainer</title>
-<meta name="theme-color" content="#f3f2ef" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#111317" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f2ef" data-scheme="light" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111317" data-scheme="dark" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Thumb CMC">
@@ -21,6 +21,10 @@ if (top === self && /^(www\.)?anawj\.com$/.test(location.hostname)) location.rep
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
 <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<script src="https://core.anawj.com/ui/1.0.0-rc.24/theme/early.js"></script>
+<!-- the app kit (app-ui, look A by default): its theme sheet; the look, light / dark and accent are chosen per device
+     (About, "Look on this device", kit.js) and early.js puts them back before the first paint -->
+<link rel="stylesheet" href="https://core.anawj.com/ui/1.0.0-rc.24/theme/theme.css">
 <link rel="stylesheet" href="style.css">
 <script type="importmap">
 { "imports": { "three": "./vendor/three/three.module.min.js", "three/addons/": "./vendor/three/addons/", "three-mesh-bvh": "./vendor/three-mesh-bvh/index.module.js" } }
@@ -192,10 +196,12 @@ if (top === self && /^(www\.)?anawj\.com$/.test(location.hostname)) location.rep
   <h3>Credits &amp; licence</h3>
   <p>Anatomical meshes are derived from <a href="https://www.z-anatomy.com/" target="_blank" rel="noopener">Z-Anatomy</a> (<a href="https://github.com/LluisV/Z-Anatomy" target="_blank" rel="noopener">LluisV/Z-Anatomy</a>), which builds on BodyParts3D (© The Database Center for Life Science), licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. The derived model file <code>models/cmcj.glb</code> (region extracted, rescaled to millimetres, subdivided, joint-distance attribute added) is shared under the same licence.</p>
   <p>Rendering: <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> and <a href="https://github.com/gkjohnson/three-mesh-bvh" target="_blank" rel="noopener">three-mesh-bvh</a> (both MIT).</p>
+  <details class="look"><summary>Look on this device</summary><div class="look-box"></div></details>
   <p class="muted" id="diag"></p>
   <form method="dialog"><button class="primary">Close</button></form>
 </dialog>
 
 <script type="module" src="js/app.js"></script>
+<script type="module" src="kit.js"></script>
 </body>
 </html>

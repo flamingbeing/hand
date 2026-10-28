@@ -1,4 +1,8 @@
-:root {
+/* The page's own colours: used as they are until the app kit (index.html, kit.js) paints, and kept when core.anawj.com
+   is blocked. Once it has painted (html[data-look]) the kit's tokens (same names: --bg, --text, --muted, --accent ...)
+   follow the device's look, light / dark and accent, and only the page's extra tokens are set here. */
+:root { --viewport: light-dark(#20232a, #0d0f12); }
+:root:not([data-look]) {
   --bg: #f3f2ef;
   --panel: #ffffff;
   --panel-2: #f6f5f2;
@@ -10,22 +14,25 @@
   --warn: #c2410c;
   --danger: #b91c1c;
   --ok: #15803d;
-  --viewport: #20232a;
   --shadow: 0 1px 2px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.05);
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-look]) {
     --bg: #111317; --panel: #181b20; --panel-2: #1f2329; --line: #2c3139; --text: #e7e8ea; --muted: #9aa0a9;
-    --accent: #5b8cff; --accent-ink: #0b0d10; --warn: #fb923c; --danger: #f87171; --ok: #4ade80; --viewport: #0d0f12;
+    --accent: #5b8cff; --accent-ink: #0b0d10; --warn: #fb923c; --danger: #f87171; --ok: #4ade80;
     --shadow: none; color-scheme: dark;
   }
 }
-:root[data-theme="dark"] {
-  --bg: #111317; --panel: #181b20; --panel-2: #1f2329; --line: #2c3139; --text: #e7e8ea; --muted: #9aa0a9;
-  --accent: #5b8cff; --accent-ink: #0b0d10; --warn: #fb923c; --danger: #f87171; --ok: #4ade80; --viewport: #0d0f12;
-  --shadow: none; color-scheme: dark;
+:root[data-look] {
+  --panel: var(--surface);
+  --panel-2: color-mix(in srgb, var(--text) 4%, var(--surface));
+  --line: color-mix(in srgb, var(--text) 14%, var(--surface));   /* hairlines (the kit's --line is a control edge) */
+  --accent-ink: var(--on-accent);
+  color-scheme: light dark;
 }
+:root[data-look][data-theme="light"] { color-scheme: light; }
+:root[data-look][data-theme="dark"] { color-scheme: dark; }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; }
@@ -35,6 +42,12 @@ body {
   display: flex; flex-direction: column; overflow: hidden;
 }
 button, select, input { font: inherit; color: inherit; }
+/* the app kit's theme.css (index.html) sizes every button, select and tick box for its own apps; this page keeps the
+   browser's controls and styles them below */
+button { display: revert; min-height: 0; padding: revert; border: revert; border-radius: revert; background: revert;
+  font-family: inherit; color: inherit; }
+select { min-height: 0; -webkit-appearance: auto; appearance: auto; background-image: none; }
+input[type="checkbox"], input[type="radio"] { width: auto; height: auto; margin: revert; }
 a { color: var(--accent); }
 kbd { font: 12px ui-monospace, monospace; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; background: var(--panel-2); }
 
@@ -157,6 +170,10 @@ select { width: 100%; padding: 5px 6px; border-radius: 8px; border: 1px solid va
 dialog { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); color: var(--text); max-width: 560px; width: calc(100% - 32px); }
 dialog::backdrop { background: rgba(0,0,0,.45); }
 dialog h2 { margin-top: 0; }
+/* About, "Look on this device": the app kit's switch (kit.js), drawn on first open */
+.look { margin: 12px 0; }
+.look > summary { cursor: pointer; color: var(--accent); font-weight: 600; padding: 4px 0; }
+.look select { width: auto; margin-top: 0; }
 
 [hidden] { display: none !important; }
 

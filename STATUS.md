@@ -10,6 +10,7 @@
 1. After the cut-over: remove the hand host from anawj-site's routes (done in the same repo-split step).
 
 ## Recently done
+- 2026-10-28: pages on the app kit theme (app-ui rc.24, look A): look, light/dark and accent per device, NUHS colours bridged.
 - Apps copied, design kit linked from design.anawj.com/v1/, Worker routes and tests, checks workflow.
 
 ## Decisions (dated, one line each)
