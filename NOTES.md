@@ -9,6 +9,10 @@ Lasting rules, owner preferences and lessons (never task chatter), and how to te
   requests as the first `routes` host).
 - Design kit: `https://design.anawj.com/v1/` (tokens.css, app.css, app.js), CORS-enabled by the kit's host; browser
   tests load it from the live address.
+- App kit theme: `https://core.anawj.com/ui/1.0.0-rc.24/` (early.js, theme.css, theme/index.js) via `kit.js`. Its
+  `glass.css` is not loaded: it styles bare `.bar` and `body::before`, which hit the NUHS bars. The NUHS `--a-*`
+  tokens map to kit tokens under `:root[data-look]` in style.css; cmcj's own palette sits under `:root:not([data-look])`.
+  Pages now follow the device's dark mode (before, tokens.css kept them light).
 
 ## Testing
 - `node .devkit/tools/check.mjs`, then the two e2e files (README).
