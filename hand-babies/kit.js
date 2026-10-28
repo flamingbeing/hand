@@ -1,9 +1,10 @@
 // The app kit's theme (app-ui @core/theme, one exact version; the same version is in index.html and sw.js): look A
-// unless this device picks another, NUHS navy as the accent, light / dark following the phone unless picked. The pages
-// on hand.anawj.com share the choice (same site storage). import() so a blocked core.anawj.com leaves the page's own look.
-export const KIT = 'https://core.anawj.com/ui/1.0.0-rc.24/';
+// unless this device picks another, NUHS navy as the accent on the NUHS kit's cool grey ground, light / dark
+// following the phone unless picked. The pages on hand.anawj.com share the choice (same site storage). import() so a
+// blocked core.anawj.com leaves the page's own look.
+export const KIT = 'https://core.anawj.com/ui/1.0.0-rc.27/';
 export const theme = import(KIT + 'theme/index.js')
-  .then(t => { t.applyTheme({ accent: '#002f6c' }); return t; })
+  .then(t => { t.applyTheme({ accent: '#002f6c', surface: 'cool' }); return t; })
   .catch(() => null);
 
 // "Look on this device": the kit's switch, drawn the first time it is opened
