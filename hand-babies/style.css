@@ -118,12 +118,14 @@ footer .linkbtn {
    and Glass or Solid. Only under html[data-look]: before the app kit paints they would be circular. */
 :root[data-look] {
   --a-font: var(--font); --a-bg: var(--bg); --a-surface: var(--surface);
-  --a-surface-2: color-mix(in srgb, var(--text) 8%, var(--surface));
-  --a-bar: var(--glass);
+  /* (the mixes give the NUHS kit's own light values on its ground, kit.js: fields #e9e9ef, bars #f9f9fb at 82%,
+     soft tint #e2ebf6, captions near #767c84; and follow any other look, ground or accent) */
+  --a-surface-2: light-dark(color-mix(in srgb, var(--text) 4%, var(--bg)), color-mix(in srgb, var(--text) 8%, var(--surface)));
+  --a-bar: color-mix(in srgb, color-mix(in srgb, var(--surface), var(--bg)) 82%, transparent);
   --a-sep: color-mix(in srgb, var(--text) 22%, transparent);
-  --a-ink: var(--text); --a-ink-2: var(--muted); --a-ink-3: var(--muted);
+  --a-ink: var(--text); --a-ink-2: var(--muted); --a-ink-3: color-mix(in srgb, var(--muted) 85%, var(--surface));
   --a-tint: var(--accent); --a-tint-ink: var(--on-accent);
-  --a-tint-soft: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  --a-tint-soft: light-dark(oklch(from var(--accent) .93 .025 h), color-mix(in srgb, var(--accent) 14%, var(--surface)));
   --a-danger: var(--danger); --a-danger-bg: color-mix(in srgb, var(--danger) 12%, var(--surface));
   --a-ok: var(--ok); --a-ok-bg: color-mix(in srgb, var(--ok) 14%, var(--surface));
   --a-warn: var(--warn); --a-warn-bg: color-mix(in srgb, var(--warn) 16%, var(--surface));
@@ -143,5 +145,6 @@ footer .linkbtn {
 :root[data-look]:not(.glass) { --a-bar: var(--surface); }
 :root[data-look]:not(.glass) :is(.a-bar, .a-tabbar) { -webkit-backdrop-filter: none; backdrop-filter: none; }
 /* "Look on this device": a quiet disclosure; the switch is drawn on first open */
-.look { margin: 18px 0 8px; font-size: var(--a-text-sm); }
-.look > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--a-tint); font-weight: 600; }
+.look { margin: 6px 16px 0; font-size: var(--a-text-xs); }
+/* (as quiet as the footer's small lines, so the page ends as it did before the switch was added) */
+.look > summary { cursor: pointer; min-height: 24px; display: flex; align-items: center; color: var(--a-ink-2); }

@@ -69,7 +69,7 @@ kbd { font: 12px ui-monospace, monospace; border: 1px solid var(--line); border-
   background: var(--bg); border-right: 1px solid var(--line);
 }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; box-shadow: var(--shadow); }
-.card h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 8px; font-weight: 650; }
+.card h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 8px; font-weight: 650; line-height: inherit; }
 .card h3 { font-size: 14px; margin: 12px 0 4px; }
 .card h3:first-child { margin-top: 0; }
 .card p, .card ul { margin: 4px 0 8px; }
