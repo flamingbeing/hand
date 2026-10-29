@@ -6,11 +6,11 @@ const VERSION = 'hand-log-v1';
 const NET_WAIT = 3000; // ms before falling back to the cached copy
 // The app kit (app-ui), one exact version (kit.js, index.html): the theme sheets and theme/index.js with every module it
 // imports. Exact-version files never change, so they are served from this cache first, online or not.
-const KIT = 'https://core.anawj.com/ui/1.0.0-rc.27/';
+const KIT = 'https://core.anawj.com/ui/1.0.0-rc.42/';
 const KIT_SHELL = ['theme/early.js', 'theme/theme.css', 'theme/index.js', 'theme/choice.js',
   'theme/colour.js', 'theme/grid.js', 'theme/guard.js', 'theme/looks.js', 'theme/motion.js', 'theme/palette-css.js',
   'theme/presets.js', 'theme/schema.js', 'theme/switch.js', 'theme/looks/a.js', 'theme/looks/b.js', 'theme/looks/c.js',
-  'theme/looks/d.js', 'theme/looks/e.js'].map(f => KIT + f);
+  'theme/looks/d.js', 'theme/looks/e.js', 'ui/tab-back.js'].map(f => KIT + f);
 const PINNED = /^https:\/\/core\.anawj\.com\/ui\/\d+\.\d+\.\d+(-rc\.\d+)?\//;
 const SHELL = ['./', 'index.html', 'style.css', 'https://design.anawj.com/v1/tokens.css', 'https://design.anawj.com/v1/app.css', 'https://design.anawj.com/v1/app.js', 'js/app.js', 'js/forms.js', 'kit.js', 'manifest.webmanifest', 'icons/icon.svg', 'icons/favicon-32.png', 'icons/apple-touch-icon.png', 'icons/icon-192.png', ...KIT_SHELL];
 

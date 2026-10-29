@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { KIT } from '../kit.js';
 import { computeBoundsTree, disposeBoundsTree, acceleratedRaycast } from 'three-mesh-bvh';
 
 // bounding-volume hierarchies make raycasts (aiming, contact, exposure, picking) fast enough for phones
@@ -1238,6 +1239,18 @@ function renderStageUI() {
     <div class="lbl">Management</div><div>${s.treatment}</div>
     ${arth && state.stage === 4 ? '<p class="lvl-bad"><b>STT involvement:</b> isolated CMC arthroscopy is not indicated. Practice only.</p>' : ''}`;
 }
+// Back with tabs (app kit tabBack): a tab switch adds no Back step; Back on another tab goes to Anatomy, then leaves.
+// Until the kit module loads (or if it is blocked) the tab address is only replaced, as before.
+let tabs = null;
+import(KIT + 'ui/tab-back.js').then((m) => { tabs = m.tabBack({ history, events: window, onFirst: () => setMode('anatomy') }); })
+  .catch(() => { /* kit blocked */ });
+function pickMode(m) {
+  if (m === state.mode) return;
+  if (!tabs) { setMode(m); return; }
+  if (m === 'anatomy' && tabs.away()) { tabs.went(true); return; }   // history.back(); onFirst shows Anatomy
+  tabs.went(m === 'anatomy', `#${m}`);
+  setMode(m);
+}
 function setMode(m) {
   state.mode = m;
   if (location.hash.slice(1) !== m) history.replaceState(null, '', `#${m}`);
@@ -1609,7 +1622,7 @@ function vivaMark(ok) {
 
 // ---------- events ----------
 function bindUI() {
-  $$('.tabs button').forEach((b) => { b.onclick = () => setMode(b.dataset.mode); });
+  $$('.tabs button').forEach((b) => { b.onclick = () => pickMode(b.dataset.mode); });
   $('#stageSeg').addEventListener('click', (e) => { const b = e.target.closest('[data-stage]'); if (b) { applyStage(+b.dataset.stage); [JB.T, JB.F, JB.S].forEach((j) => { j.dirty = true; }); } });
   $('#viewBtns').addEventListener('click', (e) => { const b = e.target.closest('[data-view]'); if (b) setView(b.dataset.view); });
   $('#layerChecks').addEventListener('change', (e) => { const l = e.target.dataset.layer; if (!l) return; state.layers[l] = e.target.checked; applyVisibility(); if (state.xray) applyXray(); });
