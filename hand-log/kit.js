@@ -2,7 +2,7 @@
 // unless this device picks another, NUHS navy as the accent on the NUHS kit's cool grey ground, light / dark
 // following the phone unless picked. The pages on hand.anawj.com share the choice (same site storage). import() so a
 // blocked core.anawj.com leaves the page's own look.
-export const KIT = 'https://core.anawj.com/ui/1.0.0-rc.27/';
+export const KIT = 'https://core.anawj.com/ui/1.0.0-rc.42/';
 export const theme = import(KIT + 'theme/index.js')
   .then(t => { t.applyTheme({ accent: '#002f6c', surface: 'cool' }); return t; })
   .catch(() => null);

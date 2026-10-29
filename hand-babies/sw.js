@@ -6,7 +6,7 @@ const VERSION = 'hand-babies-v10';
 const NET_WAIT = 3000; // ms before falling back to the cached copy
 // The app kit (app-ui), one exact version (kit.js, index.html): the theme sheets and theme/index.js with every module it
 // imports. Exact-version files never change, so they are served from this cache first, online or not.
-const KIT = 'https://core.anawj.com/ui/1.0.0-rc.27/';
+const KIT = 'https://core.anawj.com/ui/1.0.0-rc.42/';
 const KIT_SHELL = ['theme/early.js', 'theme/theme.css', 'theme/index.js', 'theme/choice.js',
   'theme/colour.js', 'theme/grid.js', 'theme/guard.js', 'theme/looks.js', 'theme/motion.js', 'theme/palette-css.js',
   'theme/presets.js', 'theme/schema.js', 'theme/switch.js', 'theme/looks/a.js', 'theme/looks/b.js', 'theme/looks/c.js',

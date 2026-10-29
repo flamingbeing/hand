@@ -1,5 +1,6 @@
 // Hand log: DOPS and Mini-CEX entries kept in this browser only (localStorage 'handlog.entries').
 import * as F from './forms.js';
+import { KIT } from '../kit.js';
 
 const KEY = 'handlog.entries';
 const PROCEDURES = F.PROCEDURES || [];
@@ -229,7 +230,7 @@ $('entry-form').addEventListener('submit', (ev) => {
   if (!save(list)) { err.textContent = 'Could not save on this device (storage full or blocked).'; return; }
   clearDraft(formType);
   try { localStorage.setItem(LAST_KEY, JSON.stringify({ assessor: entry.assessor, setting: entry.setting, complexity: entry.complexity })); } catch { /* ignore */ }
-  location.hash = '#list';
+  goTab('#list');
 });
 
 // ---------- list ----------
@@ -269,14 +270,14 @@ function renderEntry(id) {
     again.addEventListener('click', () => {
       if (!current) return;
       prefill = { type: current.type, item: current.item, setting: current.setting, complexity: current.complexity };
-      location.hash = current.type === 'minicex' ? '#new-minicex' : '#new-dops';
+      goTab(current.type === 'minicex' ? '#new-minicex' : '#new-dops');
     });
   }
 }
 $('delete').addEventListener('click', () => {
   if (!current || !confirm('Delete this entry? This cannot be undone.')) return;
   save(load().filter((x) => x.id !== current.id));
-  location.hash = '#list';
+  goTab('#list');
 });
 $('export-one').addEventListener('click', () => { if (current) download(`handlog-${current.id}.csv`, toCSV([current]), 'text/csv'); });
 
@@ -365,6 +366,30 @@ function route() {
   else show();
 }
 window.addEventListener('hashchange', route);
+// Back with tabs (app kit tabBack): a tab switch adds no Back step; Back on another tab goes to Entries, then leaves.
+// Until the kit module loads (or if it is blocked) the tab bar links work as plain links.
+let tabs = null;
+const isFirst = (h) => h === '#list' || h === '';
+function goTab(h) {
+  if (!tabs) { location.hash = h; return; }
+  if (isFirst(h)) {
+    if (tabs.away()) tabs.went(true);   // history.back(): the Entries entry is under this one
+    else if (!isFirst(location.hash)) location.hash = '#list';
+    else route();
+  } else {
+    tabs.went(false, h);   // pushes the one entry or only changes the address; no hashchange, so route here
+    route();
+  }
+}
+import(KIT + 'ui/tab-back.js').then((m) => {
+  tabs = m.tabBack({ history, events: window, onFirst: route });
+}).catch(() => { /* kit blocked: plain links */ });
+document.querySelector('.a-tabbar').addEventListener('click', (ev) => {
+  const a = ev.target.closest('a[href^="#"]');
+  if (!tabs || !a || ev.defaultPrevented || ev.button || ev.metaKey || ev.ctrlKey || ev.shiftKey) return;
+  ev.preventDefault();
+  if (a.getAttribute('href') !== (location.hash || '#list')) goTab(a.getAttribute('href'));
+});
 route();
 
 try { if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(() => {}); } catch { /* no SW */ }
