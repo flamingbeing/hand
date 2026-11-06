@@ -1,16 +1,16 @@
 # Status
 
 ## Now
-- Moved from anawj-site (21 Oct 2026). Waiting for hand.anawj.com to be pointed at this repo's Worker.
+- Live: hand.anawj.com is served by this repo's Worker `hand`, deployed from GitHub Actions (deploy.yml) on merge to main.
 
 ## Waiting on the owner
-- Connect this repo to the Worker `hand` in Workers Builds (build command `node tools/stamp-versions.mjs`, deploy `npx wrangler deploy`) and move the hand.anawj.com custom domain to it.
+- Nothing.
 
 ## Next (in order)
-1. After the cut-over: remove the hand host from anawj-site's routes (done in the same repo-split step).
+1. Check that anawj-site's routes no longer include the hand host (part of the repo split).
 
 ## Recently done
-- 2026-10-28: pages on the app kit theme (app-ui rc.24, look A): look, light/dark and accent per device, NUHS colours bridged.
+- 2026-10-28: pages on the app kit theme (app-ui rc.24, look A; now rc.42, see AGENTS.md): look, light/dark and accent per device, NUHS colours bridged.
 - Apps copied, design kit linked from design.anawj.com/v1/, Worker routes and tests, checks workflow.
 
 ## Decisions (dated, one line each)

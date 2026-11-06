@@ -40,4 +40,4 @@ python tools/export_cmcj_from_z_anatomy.py -- "Z-Anatomy/Z-Anatomy PC/Assets/Mod
 ## Running locally
 
 Any static server, e.g. `python3 -m http.server` from the repo root, then open `/cmcj/` (the redirect only fires on
-`anawj.com`). On a PR preview: `<preview>/_sites/hand.anawj.com/cmcj/`.
+`anawj.com`). This repo has no PR preview links; check the PR by running the pages locally.
